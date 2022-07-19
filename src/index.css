@@ -20,4 +20,5 @@ code {
 .main-container{
   display: flex;
   position: relative;
+  background-color: rgb(232, 226, 226);
 }

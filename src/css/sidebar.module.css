@@ -20,17 +20,19 @@ body{
 
 .container{
     display: flex;
+    box-shadow: 0 8px 2px 0 rgba(0, 0, 0, 0.2);
 }
 main{
     width: 100%;
     padding: 20px;
 }
 .sidebar{
-    background-color: var(--side-bar-background);
+    background-color:white;
     color: var(--text-color);
     height: 100vh;
     width: 200px;
     transition: all 0.5s;
+    box-shadow: 0 8px 2px 0 rgba(0, 0, 0, 0.2);
 }
 .top_section{
     display: flex;
@@ -43,7 +45,7 @@ main{
 .bars{
     display: flex;
     font-size: 25px;
-    margin-left: 70px;
+    margin-left: 100px;
 }
 .link{
     display: flex;

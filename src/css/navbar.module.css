@@ -10,11 +10,67 @@
 }
 .user > span{
     font-size: 18px;
+    margin-top: 25px;
+    margin-right: 4px;
 }
 .user{
    display: flex;
-   gap:10px;
+   gap:8px;
    align-items: center;
-   font-size: 30px;
+   
+}
+.user1 >span{
+    margin-top: 10px;
+    position: relative;
+    margin-top: 0px !important;
+}
+.user1{
+    display: flex;
+    gap:20px;
+    align-items: center;
+    font-size: 30px;
+    margin-top: 18px;
+    position: relative;
+ }
+ .user1 > div{
+   position: relative;
+ }
+ .user1 > div > div{
+     background-color:#fff;
+ }
+ .user1 >span::after{
+     position: absolute;
+     width: 10px;
+     height: 10px;
+     border-radius: 50%;
+     background-color: red;
+     content: "";
+     top: -3px;
+     right: 5px;
+ }
+ .fauser{
+    font-size: 20px;
+     border: 1px solid silver;
+     position: absolute;
+     right: 0;
+     padding: 5px 10px;
+     cursor: pointer;
+ }
+.bell{
+    display: flex;
+    flex-direction: column;
+    border: 1px solid silver;
+    font-size: 20px;
+    position: absolute;
+    right:0;
+    background-color: #fff;
+    width:200px;
+    padding:5px 10px;
+}
+.bell >span{
+    margin: 5px;
+    margin-bottom: 0;
+    cursor: pointer;
+    
 }
    

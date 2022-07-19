@@ -12,6 +12,7 @@ import {MdPayment,} from 'react-icons/md';
 import{TbCash} from 'react-icons/tb';
 import { NavLink,Link,useLocation } from "react-router-dom";
 import { SideWidthContext } from "../Page";
+import Logo from "../images/logo.png";
 
 const Sidebar = () => {
     const{isOpen ,setIsOpen} = useContext(SideWidthContext);
@@ -70,8 +71,8 @@ const Sidebar = () => {
         <div className={css.container}>
             <div style={{width: isOpen ? "250px" : "50px"}} className={css.sidebar}>
                <div className={css.top_section}>
-                  <h1 style={{display: isOpen ? "block" : "none"}} className={css.logo}>Logo</h1>
-                  <div style={{marginLeft: isOpen ? "50px" : "0px"}} className={css.bars}>
+                  <h1 style={{display: isOpen ? "block" : "none"}} className={css.logo}><img src={Logo} width='100px'/></h1>
+                  <div style={{marginLeft: isOpen ? "90px" : "0px"}} className={css.bars}>
                       <FaBars onClick={toggle}/>
                   </div>
                </div>
@@ -83,7 +84,6 @@ const Sidebar = () => {
                        </NavLink>
                    ))
                }
-                 <nav className="navBar"></nav>
             </div>
         </div>
         
