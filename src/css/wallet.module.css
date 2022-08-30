@@ -1,9 +1,47 @@
-.dboard{
-    height: 400px;
-    background-color: white;
-    margin: 20px;
-    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
-}
-.dboard >h1{
-    margin: 10px 0 0 30px;
-}
+*{
+    box-sizing: border-box;
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+    
+  }
+  
+  :root{
+    --base-width: 90%;
+  }
+  .dboard{
+     display: flex;
+     flex-direction: column;
+     justify-content: flex-start;
+     align-items: center;
+     width: var(--base-width);
+      background-color: white;
+      padding: 10px 20px 30px;
+      box-shadow: 0 4px 8px 0 rgba(255, 243, 243, 0.3);
+      gap:10px;
+  }
+  .dboard2{
+      background-color:#5c7b99; 
+      color: aliceblue;
+      box-shadow: 0 4px 8px 0 rgba(255, 243, 243, 0.3);
+      border-radius: 10px;
+      width: 100%;
+      display: flex;
+      justify-content: space-between;
+      
+  }
+  .ig{
+     width: 100px;
+     height: 100px;
+     margin-right: 30px;
+  
+  }
+  .dboard >div > div > h1{
+    margin: 30px;
+    margin-bottom: 5px;
+    font-size: 50px;
+  }
+  .dboard >div > div >h5{
+      margin: 30px;
+      margin-bottom: 10px;
+      font-size: 15px;
+      margin-top: 0;
+    }

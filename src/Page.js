@@ -2,6 +2,7 @@ import React,{Fragment,createContext, useState} from "react";
 import Sidebar from "./components/sidebar";
 import {Routes, Route } from "react-router-dom";
 import Dashboard from "./pages/Dashboards";
+import Bank from "./pages/Bank";
 import Wallet from "./pages/wallet";
 import Paybills from "./pages/paybills";
 import AirtimeToCash from "./pages/airtime-to-cash";
@@ -16,10 +17,11 @@ const Page = () => {
      <SideWidthContext.Provider value={{isOpen,setIsOpen}}>
         <div className="main-container">
             <Sidebar/>
-            <div style={isOpen?{width:'calc(100% - 250px)'}:{width:'calc(100% - 50px)'}}>
+            <div style={isOpen?{width:'calc(100% - 250px)'}:{width:'calc(100% - 50px)'}} className='parentContainer'>
                 <Navbar/>
                 <Routes>
                     <Route path="/" element={<Dashboard/>}/>
+                    <Route path="/bank" element={<Bank/>}/>
                     <Route path="/wallet" element={<Wallet/>}/>
                     <Route path="/airtime-to-cash" element={<AirtimeToCash/>}/>
                     <Route path="/paybills" element={<Paybills/>}/>

@@ -6,9 +6,9 @@ import {
     FaBars,
     FaWallet,
     FaClone
-
 }from "react-icons/fa";
-import {MdPayment,} from 'react-icons/md';
+import {BsBank2} from 'react-icons/bs';
+import {MdPayment, MdArrowDropDown,  MdArrowDropUp} from 'react-icons/md';
 import{TbCash} from 'react-icons/tb';
 import { NavLink,Link,useLocation } from "react-router-dom";
 import { SideWidthContext } from "../Page";
@@ -29,8 +29,32 @@ const Sidebar = () => {
         {
         path:"/wallet",
         name:"Wallet",
-        icon:<FaWallet/>
-        },
+        icon:<FaWallet/>,
+        iconClose:<MdArrowDropDown/>,
+        iconOpen:<MdArrowDropUp/>,
+        subNav: [
+            {
+                path:"/TRANSACTIONS",
+                name:"TRANSACTIONS",
+                icon:<FaWallet/>,
+            },
+            {
+                path:"/DEPOSIt",
+                name:"DEPOSIt",
+                icon:<FaWallet/>,
+            },
+            {
+                path:"/WITHDRAW",
+                name:"WITHDRAW",
+                icon:<FaWallet/>,
+            }
+        ]
+        },  
+        {
+            path:"/bank",
+            name:"Bank",
+            icon:<BsBank2/>,
+         },
         {
         path:"/paybills",
         name:"Paybills",
@@ -45,8 +69,10 @@ const Sidebar = () => {
          path:"/airtime-and-data",
          name:"AirtimeAndData",
          icon:<FaClone/>,
-         }
+         },
+       
     ]
+
 
 
 
