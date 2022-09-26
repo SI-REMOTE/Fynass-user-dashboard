@@ -1,6 +1,8 @@
 import React, { useState,useEffect,useContext } from "react";
 import css from '../css/sidebar.module.css';
 
+import * as AiIcons from "react-icons/ai";
+import SubMenu from "./submenu";
 import {
     FaTh,
     FaBars,
@@ -19,7 +21,11 @@ const Sidebar = () => {
     const [activeMenuLink,setActiveMenuLink] = useState(0);
     const toggle = () => setIsOpen(!isOpen);
     const location = useLocation();
+    const [activeSideLink, setActiveSideLink] = useState(0);
+    const [sideStatus,setSideStatus] = useState(false);
+    const [sideCnt,setSideCnt] = useState(0)
 
+ 
     const menuItem=[
         {
         path:"/",
@@ -30,23 +36,23 @@ const Sidebar = () => {
         path:"/wallet",
         name:"Wallet",
         icon:<FaWallet/>,
-        iconClose:<MdArrowDropDown/>,
+        iconClose:<MdArrowDropDown />,
         iconOpen:<MdArrowDropUp/>,
         subNav: [
             {
-                path:"/TRANSACTIONS",
-                name:"TRANSACTIONS",
-                icon:<FaWallet/>,
+                path:"/wallet/Transactions",
+                name:"Transactions",
+                icon:<FaWallet/>
             },
             {
-                path:"/DEPOSIt",
-                name:"DEPOSIt",
-                icon:<FaWallet/>,
+                path:"/wallet/Deposit",
+                name:"Deposit",
+                icon:<FaWallet/>
             },
             {
-                path:"/WITHDRAW",
-                name:"WITHDRAW",
-                icon:<FaWallet/>,
+                path:"/wallet/Withdraw",
+                name:"Withdraw",
+                icon:<FaWallet/>
             }
         ]
         },  
@@ -54,6 +60,21 @@ const Sidebar = () => {
             path:"/bank",
             name:"Bank",
             icon:<BsBank2/>,
+            iconClose:<MdArrowDropDown />,
+            iconOpen:<MdArrowDropUp/>,
+        subNav: [
+            {
+                path:"/bank/Add-bank",
+                name:"Add-Bank",
+                icon:<FaWallet/>
+            },
+            {
+                path:"/bank/View-bank",
+                name:"View-bank",
+                icon:<FaWallet/>
+            },
+           
+        ]
          },
         {
         path:"/paybills",
@@ -66,10 +87,24 @@ const Sidebar = () => {
         icon:<TbCash/>,
         },
         {
-         path:"/airtime-and-data",
-         name:"AirtimeAndData",
-         icon:<FaClone/>,
-         },
+          path:"/airtime-and-data",
+          name:"AirtimeAndData",
+          icon:<FaClone/>,
+          iconClose:<MdArrowDropDown />,
+          iconOpen:<MdArrowDropUp/>,
+        subNav: [
+            {
+                path:"/airtime-and-data/Airtime",
+                name:"Airtime",
+                icon:<FaClone/>
+            },
+            {
+                path:"/airtime-and-data/Data",
+                name:"Data",
+                icon:<FaWallet/>
+            },
+        ]
+        },
        
     ]
 
@@ -90,9 +125,46 @@ const Sidebar = () => {
             }
        }
     //    console.log(activeMenuIndex)
-       setActiveMenuLink(activeMenuIndex)
+       setActiveMenuLink(activeMenuIndex);
      },[location.pathname])
 
+
+     useEffect(()=>{
+         setSideCnt(0)
+     },[activeSideLink])
+     useEffect(()=>{
+         if(sideCnt == 0){
+            setSideStatus(true);
+         }
+         else{
+              setSideStatus(!sideStatus);
+         }
+     },[sideCnt])
+
+
+     useEffect(()=>{
+         let locationIndex = location.pathname;
+         locationIndex = locationIndex.split('/');
+         locationIndex = locationIndex[locationIndex.length -1];
+         if(!locationIndex){
+             setActiveSideLink(0);
+         }
+         else{
+             let newIndex = 0;
+             menuItem.forEach((menu,ind)=> {
+                 if(menu.path.toLowerCase().search(locationIndex) != -1){
+                    newIndex = ind;
+                 }
+             })
+             //console.log(newIndex)
+             setActiveSideLink(newIndex);
+             setSideCnt(1);
+         }
+         
+
+     },[])
+  
+      
     return(
         <div className={css.container}>
             <div style={{width: isOpen ? "250px" : "50px"}} className={css.sidebar}>
@@ -103,14 +175,23 @@ const Sidebar = () => {
                   </div>
                </div>
                {
-                   menuItem.map((item, index)=>(
-                       <NavLink to={item.path} key={index} className={`${css.link} ${activeMenuLink === index ?css.active: ''}`}  >
-                           <div className={css.icon}>{item.icon}</div>
-                           <div style={{display: isOpen ? "block" : "none"}} className={css.link_text}>{item.name}</div>
-                       </NavLink>
+                   menuItem.map((item, index)=>( 
+                       <div key={index} >
+                            <NavLink to={item.path}  className={`${css.link} ${activeMenuLink === index ?css.active: ''}`} onClick={()=>{activeSideLink != index?setActiveSideLink(index):setSideCnt(sideCnt+1)}}  >
+                                <div className={css.icon}>{item.icon}</div>
+                                <div style={{display: isOpen ? "block" : "none"}} className={css.link_text}>{item.name}</div>
+                            </NavLink>
+                            {item.subNav && item.subNav.length > 0 && activeMenuLink == index && sideStatus ? <div className={css.subn}>
+                                    <SubMenu item={item} />
+                                </div>:<></>}
+                       </div>
                    ))
                }
-            </div>
+             <div >
+                
+             </div>
+             
+          </div>
         </div>
         
     );

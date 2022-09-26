@@ -9,13 +9,13 @@ const Dashboard = () => {
     return(
         <div className={css.dboard}>
            <div className={css.dboard2} >
-               <div>
+               <img className={css.ig} src={image} alt=""/>
+                <div>
                    <h1>Dashboard</h1>
                     <h5>below is the summary of your activities on user portal </h5>
                </div>
-               <img className={css.ig} src={image} alt=""/>
            </div>
-           <div></div>
+           <div className={css.div2}></div>
            <div>
                <div>
                    <p>
@@ -59,7 +59,7 @@ const Dashboard = () => {
                        <span>Buy Airtime/Data</span>
                    </p>
                    <div>
-                      <ul class="ta-smallList ta-smallList2 ">
+                      <ul className="ta-smallList ta-smallList2 ">
                          <li>AIRTME -&gt; CASH: <span>YES</span></li>
                          <li>DATA -&gt; CASH: <span>YES</span></li>
                         </ul>

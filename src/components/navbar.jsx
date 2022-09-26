@@ -31,6 +31,7 @@ const Navbar = () =>{
         let newPath = location.pathname;
         let len = newPath.split('/').length;
         let allPath = newPath.split('/');
+        console.log(allPath);
         let newArr = ['/'];
         let i;
         for(i = 0;i<len;i++){
@@ -38,12 +39,24 @@ const Navbar = () =>{
                
             }
             else{
-                newArr.push(allPath[i].toString())
+                let pathString = '';
+                newArr.forEach((p,ind) =>{
+                    if(ind != 0){
+                        pathString+=`${p.toString()}/`;
+                    }
+                })
+                newArr.push(pathString + allPath[i].toString())
             }
             
         }
         console.log(newArr);
-        setPathArr(newArr)
+        if(newArr .length > 1){
+            setPathArr(newArr.slice(1))
+        }
+        else{
+            setPathArr(newArr)
+        }
+        
     },[location])
     return(
    <div className={css.navba}>
@@ -70,7 +83,7 @@ const Navbar = () =>{
               </div>
           </div>
       </div>
-      <div  className={css.bar} >{pathArr && pathArr.length > 0 && pathArr.map((path,ind) => (<Link to={path==='/'?'/':`/${path}`}>{path==='/'?'Dashboard':path}{ind !== (pathArr.length-1)?` >> `:''}</Link>))}</div>
+      <div  className={css.bar} >{pathArr && pathArr.length > 0 && pathArr.map((path,ind) => (<Link key={ind} to={path==='/'?'/':`/${path}`}>{path==='/'?'Dashboard':path.search('/') == -1?path:path.split('/')[path.split('/').length - 1]}{ind !== (pathArr.length-1)?` >> `:''}</Link>))}</div>
     </div>
   )
 }
